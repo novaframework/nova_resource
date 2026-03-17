@@ -1,0 +1,10 @@
+{application, nova_resource, [
+    {description, "Declarative resource layer for the Nova ecosystem"},
+    {vsn, "git"},
+    {registered, []},
+    {applications, [kernel, stdlib, kura]},
+    {env, []},
+    {modules, []},
+    {licenses, ["MIT"]},
+    {links, []}
+]}.

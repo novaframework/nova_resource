@@ -1,0 +1,6 @@
+_build/
+_checkouts/
+rebar.lock
+*.beam
+*.plt
+doc/
