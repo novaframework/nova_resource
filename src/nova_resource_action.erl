@@ -10,6 +10,7 @@
 -spec run(module(), atom(), map(), #nr_context{}) -> {ok, term()} | {error, term()}.
 run(Resource, ActionName, Input, Ctx0) ->
     Ctx = Ctx0#nr_context{resource = Resource, action = ActionName},
+    maybe_set_tenant(Ctx#nr_context.tenant),
     case nova_resource:action(Resource, ActionName) of
         {error, not_found} ->
             {error, {action_not_found, ActionName}};
@@ -148,6 +149,9 @@ apply_input_filters(Query, Input) ->
         Filter ->
             kura_query:where(Query, Filter)
     end.
+
+maybe_set_tenant(undefined) -> ok;
+maybe_set_tenant(Tenant) -> kura_tenant:put_tenant(Tenant).
 
 apply_calculations(Resource, Record) ->
     Calcs = nova_resource:calculations(Resource),
