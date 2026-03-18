@@ -49,6 +49,8 @@ resource() ->
     states/1
 ]).
 
+-ignore_xref([valid_transition/3, valid_transitions_from/2, states/1]).
+
 -export_type([state_machine/0]).
 
 -opaque state_machine() :: #{
